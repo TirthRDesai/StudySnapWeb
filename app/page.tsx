@@ -131,6 +131,10 @@ export default function Home() {
 	}, [email]);
 
 	useEffect(() => {
+		if (currentUser && currentUser.email) setEmail(currentUser.email);
+	}, [currentUser]);
+
+	useEffect(() => {
 		supabase.auth.getSession().then(({ data }) => {
 			setCurrentUser(data.session?.user ?? null);
 		});
